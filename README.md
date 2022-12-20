@@ -1,7 +1,7 @@
 # WotsPlus
 Wots+ Signature Scheme Utilizing Sha256 (Context of Sphincs+ Signature Scheme for Post-Quantum Cryptography)
 
-This repository represents an implementation of Wots+ (Winternitz One-Time Signature Scheme) in context of SPHINCS+. It is developed as part of my MEng/Diploma Thesis <Hardware Implementation of SPHINCS+ (Wots+) Signature Scheme for Post Quantum Cryptography>from Electical and Computer Engineering Department, University of Patras, Patras Greece. 
+This repository represents an implementation of Wots+ (Winternitz One-Time Signature Scheme) in context of SPHINCS+. It is developed as part of my MEng/Diploma Thesis `Hardware Implementation of SPHINCS+ (Wots+) Signature Scheme for Post Quantum Cryptography` from Electical and Computer Engineering Department, University of Patras, Patras Greece. 
 
 SPHINCS+ describes a a stateless hash-based signature framework which can be combined with an arbitrary hash function.
 The aim is to standardize cryptographic systems that are secure against attacks originating from both quantum and “classical” computers.
