@@ -34,27 +34,17 @@ use work.Utils.all;
 --use UNISIM.VComponents.all;
 
 entity HashLoop is
-Port( --INPUTW: in std_logic_vector(0 to 2047)  ;
-      clk : in std_logic;
-     -- rst : in std_logic ;
-     controlcnt : in std_logic;
-     reset_cnt : in std_logic;
+Port(   clk : in std_logic;
+        controlcnt : in std_logic;
+        reset_cnt : in std_logic;
         W_IN : in K_DATA; 
-      HV_IN : in H_DATA;
-      HV : out H_DATA ;
-      
-      --cntoutput: out unsigned(6 downto 0);
-      --Hash_out :out std_logic_vector(255 downto 0);
-      --WTEST: out K_DATA;
-      --H_TEST : OUT H_DATA;
-      Hash_Done : out std_logic);
+        HV_IN : in H_DATA;
+        HV : out H_DATA ;
+        Hash_Done : out std_logic);
 end HashLoop;
 
 architecture Behavioral of HashLoop is
 
-  --signal  HV  : H_DATA := (X"6a09e667", X"bb67ae85", X"3c6ef372",
-                                       -- X"a54ff53a", X"510e527f", X"9b05688c",
-                                        --X"1f83d9ab", X"5be0cd19");
                                        
   signal HVTEMP : H_DATA ;                                   
 
@@ -102,17 +92,9 @@ begin
 process (clk) 
     variable Temp1 : std_logic_vector(31 downto 0 ):= (others => '0' );
     variable Temp2 : std_logic_vector(31 downto 0 ) := (others => '0' );
-    --variable done: std_logic := '0';
-    --variable  cnt : unsigned (6 downto 0) := "0000000";
+
 begin 
           
-           --W_LOOP : for i in 0 to 63 loop   
-            --W_IN(i) <= INPUTW((32*i) to (32 *(i+1)-1));
-   --        end loop;
-
-   -- if ( rst = '1') then 
-       -- cnt <= "0000000";
-        --end if ;
     if(clk'event and clk = '1' ) then
             if (reset_cnt = '1' ) then 
                 cnt <= "0000000";

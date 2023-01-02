@@ -79,27 +79,18 @@ architecture Behavioral of Sha256 is
         W_Done : out std_logic;
         controlcntW : in std_logic;
         reset_cntW : in std_logic;
-        --M_out : out M_DATA;
-        --cnt_out :out unsigned (6 downto 0) ;
         W_OUT: out K_DATA   );
         
        end component ;
        
     component HashLoop 
-Port( --INPUTW: in std_logic_vector(0 to 2047)  ;
-      clk : in std_logic;
-     -- rst : in std_logic ;
-     controlcnt : in std_logic;
-     reset_cnt : in std_logic;
-     
+Port(   clk : in std_logic;
+        controlcnt : in std_logic;
+        reset_cnt : in std_logic;
         W_IN : in K_DATA; 
-      HV_IN : in H_DATA;
-      HV : out H_DATA ;
-      --cntoutput: out unsigned(6 downto 0);
-      --Hash_out :out std_logic_vector(255 downto 0);
-      --WTEST: out K_DATA;
-      --H_TEST : OUT H_DATA;
-      Hash_Done : out std_logic);
+        HV_IN : in H_DATA;
+        HV : out H_DATA ;
+        Hash_Done : out std_logic);
 end component; 
 
     signal W_TEMP : K_DATA; 
@@ -109,7 +100,6 @@ end component;
     signal HV_INITIALVALUES : H_DATA := (X"6a09e667", X"bb67ae85", X"3c6ef372",
                                          X"a54ff53a", X"510e527f", X"9b05688c",
                                         X"1f83d9ab", X"5be0cd19");
-    --signal CNT_BLOCKS : std_logic_vector(6 downto 0) := "0000000";
                                        
     signal CNT_BLOCKS : natural := 0 ;
     signal controlcnt : std_logic ;
@@ -293,9 +283,6 @@ process(clk, rst)
          end if;
      end process ;
      
- 
-  --finished <= '1' when curr_state = DONE else
-    --            '0';
    REVERSE_OUT : for i in 0 to 255 generate
     --p_read_temp((i+1)*8-1 downto (i*8)) <= p_read((i+2)*4 downto ((i+1)*4));
     ap_returnfinal(i)<=ap_return_temp(255-i);
@@ -313,10 +300,6 @@ REVERSE_OUTFINAL : for i in 0 to 31 generate
     ap_return((i*8)+6)<=ap_returnfinal(i*8+1);
     ap_return((i*8)+7)<=ap_returnfinal(i*8);
     end generate;
-  --ap_done <= '1' when curr_state=DONE else '0';
-                
-    --ap_return <= HV(0) & HV(1) & HV(2) & HV(3) & HV(4) & HV(5) & HV(6) & HV(7);
-    --curr_state<= RESET;
     
     
 end Behavioral;
