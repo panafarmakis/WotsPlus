@@ -141,7 +141,6 @@ end component;
 begin
 
 REVERSE_B : for i in 0 to 511 generate
-    --p_read_temp((i+1)*8-1 downto (i*8)) <= p_read((i+2)*4 downto ((i+1)*4));
     p_read_temp(i)<=p_read(511-i);
     p_read1_temp(i)<=p_read1(511-i);
     p_read2_temp(i)<=p_read2(511-i);
@@ -177,12 +176,12 @@ REVERSE_FINAL : for i in 0 to 63 generate
 
 
 LenInt <= std_logic_vector(to_unsigned(Length,64));
---p_read1&'1'&Zeros&LenInt;
 
 msg_block_in <= Msg_blocks(CNT_BLOCKS);
 Msg_blocks(0)<= p_read_tempf;
 TempforPad <= p_read1_tempf(511 downto 208) ; 
 Msg_blocks(1)<= TempforPad &'1'& Zeros & LenInt;
+
 --Msg_blocks(1)<=p_read1_temp; 
 --Msg_blocks(2)<= p_read2;
 --Msg_blocks(3)<= p_read3;
@@ -227,7 +226,6 @@ process(clk, rst)
                 ap_idle <= '1'; 
                 CNT_BLOCKS <= 0 ;
                 HV_IN <= HV_INITIALVALUES;
-                --ap_return_temp <= (others => '0');
                 if (ap_start = '1') then 
                 curr_state <= READ_MSG_BLOCK;
                 end if;
@@ -272,11 +270,8 @@ process(clk, rst)
                 ap_done <= '1' ;
                 ap_ready <= '1';
                 ap_return_temp <= HV(0) & HV(1) & HV(2) & HV(3) & HV(4) & HV(5) & HV(6) & HV(7);
-                --ap_return <= HV(7)&HV(6)&HV(5)&HV(4)&HV(3)&HV(2)&HV(1)&HV(0);
                 curr_state<= IDLE;
-           --when CLEAR => -- reset all components for next SHA call (not next SHA block -> this is IDLE) 
-                --HV_IN <= HV_INITIALVALUES;
-                --curr_state <= IDLE;
+
                 
                 
          end case ;
@@ -284,7 +279,6 @@ process(clk, rst)
      end process ;
      
    REVERSE_OUT : for i in 0 to 255 generate
-    --p_read_temp((i+1)*8-1 downto (i*8)) <= p_read((i+2)*4 downto ((i+1)*4));
     ap_returnfinal(i)<=ap_return_temp(255-i);
     ap_returnfinal(i)<=ap_return_temp(255-i);
     ap_returnfinal(i)<=ap_return_temp(255-i);
