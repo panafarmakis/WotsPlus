@@ -14,10 +14,10 @@ Finally, we perform hardware-software co-optimization, by using the synthesized 
 
 This teqnique allowed us to present an approx. 60x times accelerated hardware implementation of the signature scheme regarding signature generation and an approx. 55x accelerated implementation regarding signature verification. 
 
-Sphincs+ Reference Website
+`Sphincs+ Reference Website`
 [https://sphincs.org/]
 
-Thesis Website (In Greek): 
+`Thesis Website (In Greek)`
 [https://hdl.handle.net/10889/23270]
 
 Tools: Vivado, VITIS HLS.
