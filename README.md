@@ -21,6 +21,7 @@ This teqnique allowed us to present an approx. 60x times accelerated hardware im
 [https://hdl.handle.net/10889/23270]
 
 Tools: Vivado, VITIS HLS.
+
 Languages: VHDL, C/C++.
 
 
